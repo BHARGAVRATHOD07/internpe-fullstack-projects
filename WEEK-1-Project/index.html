@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumorphic & Glassmorphic Premium Calculator</title>
+    
+    <!-- Google Fonts for Modern Styling -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Iconography -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated background elements for depth and beauty -->
+    <div class="bg-blur-circles">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Main Calculator Component -->
+        <main class="calculator-card">
+            <!-- Header Utility Bar -->
+            <header class="calc-header">
+                <span class="logo">
+                    <i class="fa-solid fa-calculator logo-icon"></i>
+                    <span>CALCULATOR</span>
+                </span>
+                
+                <div class="controls-group">
+                    <!-- History Drawer Toggle -->
+                    <button id="history-toggle-btn" class="utility-btn" title="Calculation History">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </button>
+                    <!-- Audio Click Sound Feedback Toggle -->
+                    <button id="sound-toggle-btn" class="utility-btn" title="Toggle Sound Feedback">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                    <!-- Theme Switcher Toggle -->
+                    <button id="theme-toggle-btn" class="utility-btn" title="Toggle Dark/Light Mode">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dual Screen Display Area -->
+            <section class="display-section">
+                <!-- Expression Track Screen (Previous operation) -->
+                <div class="display-expression" id="expr-display"></div>
+                <!-- Main Current Entry Screen -->
+                <div class="display-current-wrapper">
+                    <span class="active-cursor"></span>
+                    <div class="display-current" id="current-display">0</div>
+                </div>
+            </section>
+
+            <!-- 24-Button Keypad Matrix Grid -->
+            <section class="keypad-grid">
+                <!-- Row 1 -->
+                <button class="key-btn action-btn" data-key="clear" title="Clear All (Esc)">C</button>
+                <button class="key-btn action-btn" data-key="clear-entry" title="Clear Entry">CE</button>
+                <button class="key-btn action-btn" data-key="backspace" title="Backspace (Backspace)"><i class="fa-solid fa-delete-left"></i></button>
+                <button class="key-btn operator-btn" data-operator="divide" data-key="/" title="Divide (/)">÷</button>
+
+                <!-- Row 2 -->
+                <button class="key-btn func-btn" data-func="square" data-key="q" title="Square (q)">x²</button>
+                <button class="key-btn func-btn" data-func="sqrt" data-key="r" title="Square Root (r)">√</button>
+                <button class="key-btn func-btn" data-func="percent" data-key="%" title="Percentage (%)">%</button>
+                <button class="key-btn operator-btn" data-operator="multiply" data-key="*" title="Multiply (*)">×</button>
+
+                <!-- Row 3 -->
+                <button class="key-btn num-btn" data-val="7">7</button>
+                <button class="key-btn num-btn" data-val="8">8</button>
+                <button class="key-btn num-btn" data-val="9">9</button>
+                <button class="key-btn operator-btn" data-operator="subtract" data-key="-" title="Subtract (-)">−</button>
+
+                <!-- Row 4 -->
+                <button class="key-btn num-btn" data-val="4">4</button>
+                <button class="key-btn num-btn" data-val="5">5</button>
+                <button class="key-btn num-btn" data-val="6">6</button>
+                <button class="key-btn operator-btn" data-operator="add" data-key="+" title="Add (+)">+</button>
+
+                <!-- Row 5 -->
+                <button class="key-btn func-btn" data-func="invert" data-key="i" title="Fraction (i)">1/x</button>
+                <button class="key-btn num-btn" data-val="1">1</button>
+                <button class="key-btn num-btn" data-val="2">2</button>
+                <button class="key-btn num-btn" data-val="3">3</button>
+
+                <!-- Row 6 -->
+                <button class="key-btn func-btn" data-func="negate" data-key="n" title="Negate (n)">±</button>
+                <button class="key-btn num-btn" data-val="0">0</button>
+                <button class="key-btn num-btn" data-val=".">.</button>
+                <button class="key-btn equals-btn" data-key="=" title="Calculate (Enter)">=</button>
+            </section>
+
+            <!-- Slide-out Calculation History Sidebar (Inside card for perfect overflow clipping) -->
+            <aside class="history-sidebar" id="history-sidebar">
+                <div class="history-header">
+                    <h3><i class="fa-solid fa-clock-rotate-left"></i> History</h3>
+                    <div class="history-actions">
+                        <button id="clear-history-btn" class="history-clear-btn" title="Clear History">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                        <button id="history-close-btn" class="history-close-btn" title="Close Drawer">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="history-list" id="history-list">
+                    <div class="no-history">No history yet</div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Script File -->
+    <script src="script.js"></script>
+</body>
+</html>

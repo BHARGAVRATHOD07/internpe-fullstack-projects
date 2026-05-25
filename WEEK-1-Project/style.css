@@ -1,0 +1,667 @@
+/* ==========================================================================
+   PREMIUM CALCULATOR DESIGN SYSTEM & STYLESHEET
+   Features: Advanced Glassmorphism, Responsive Grid, Smooth Animations
+   ========================================================================== */
+
+/* Define Global CSS Variables for Themes */
+:root {
+    /* Fonts */
+    --font-ui: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+    /* Transition speeds */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-slow: 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    /* Dark Theme Default Values */
+    --bg-gradient: radial-gradient(circle at 10% 20%, rgba(18, 16, 32, 1) 0%, rgba(10, 8, 22, 1) 90%);
+    --calc-bg: rgba(18, 16, 32, 0.55);
+    --calc-border: rgba(255, 255, 255, 0.08);
+    --display-bg: rgba(0, 0, 0, 0.25);
+    --display-border: rgba(255, 255, 255, 0.03);
+    
+    --text-primary: #ffffff;
+    --text-secondary: #8b8ba7;
+    --text-muted: #575775;
+    
+    --key-num-bg: rgba(255, 255, 255, 0.03);
+    --key-num-border: rgba(255, 255, 255, 0.03);
+    --key-num-text: #e2e8f0;
+    --key-num-hover: rgba(255, 255, 255, 0.08);
+    
+    --key-action-bg: rgba(139, 92, 246, 0.12);
+    --key-action-border: rgba(139, 92, 246, 0.15);
+    --key-action-text: #a78bfa;
+    --key-action-hover: rgba(139, 92, 246, 0.25);
+    
+    --key-op-bg: rgba(249, 115, 22, 0.12);
+    --key-op-border: rgba(249, 115, 22, 0.15);
+    --key-op-text: #fb923c;
+    --key-op-hover: rgba(249, 115, 22, 0.25);
+
+    --key-func-bg: rgba(20, 184, 166, 0.08);
+    --key-func-border: rgba(20, 184, 166, 0.12);
+    --key-func-text: #2dd4bf;
+    --key-func-hover: rgba(20, 184, 166, 0.2);
+
+    --key-eq-bg: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    --key-eq-text: #ffffff;
+    --key-eq-hover: linear-gradient(135deg, #f43f5e 0%, #a78bfa 100%);
+    --key-eq-shadow: 0 4px 20px rgba(236, 72, 153, 0.4);
+
+    --utility-btn-bg: rgba(255, 255, 255, 0.03);
+    --utility-btn-hover: rgba(255, 255, 255, 0.1);
+    
+    --sidebar-bg: rgba(14, 12, 26, 0.85);
+    --sidebar-border: rgba(255, 255, 255, 0.06);
+
+    --shadow-main: 0 20px 50px rgba(0, 0, 0, 0.4);
+    --glass-blur: 24px;
+    --neon-glow: 0 0 20px rgba(139, 92, 246, 0.15);
+
+    --circle-1-color: rgba(139, 92, 246, 0.25);
+    --circle-2-color: rgba(236, 72, 153, 0.2);
+    --circle-3-color: rgba(20, 184, 166, 0.15);
+}
+
+/* Light Theme Variables */
+html[data-theme="light"] {
+    --bg-gradient: radial-gradient(circle at 10% 20%, #f3f4f6 0%, #e5e7eb 90%);
+    --calc-bg: rgba(255, 255, 255, 0.45);
+    --calc-border: rgba(255, 255, 255, 0.6);
+    --display-bg: rgba(255, 255, 255, 0.35);
+    --display-border: rgba(255, 255, 255, 0.2);
+    
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+    --text-muted: #9ca3af;
+    
+    --key-num-bg: rgba(255, 255, 255, 0.5);
+    --key-num-border: rgba(255, 255, 255, 0.4);
+    --key-num-text: #374151;
+    --key-num-hover: rgba(255, 255, 255, 0.85);
+    
+    --key-action-bg: rgba(99, 102, 241, 0.06);
+    --key-action-border: rgba(99, 102, 241, 0.1);
+    --key-action-text: #4f46e5;
+    --key-action-hover: rgba(99, 102, 241, 0.15);
+    
+    --key-op-bg: rgba(249, 115, 22, 0.06);
+    --key-op-border: rgba(249, 115, 22, 0.1);
+    --key-op-text: #d97706;
+    --key-op-hover: rgba(249, 115, 22, 0.15);
+
+    --key-func-bg: rgba(13, 148, 136, 0.05);
+    --key-func-border: rgba(13, 148, 136, 0.08);
+    --key-func-text: #0f766e;
+    --key-func-hover: rgba(13, 148, 136, 0.12);
+
+    --key-eq-bg: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
+    --key-eq-text: #ffffff;
+    --key-eq-hover: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
+    --key-eq-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+
+    --utility-btn-bg: rgba(255, 255, 255, 0.4);
+    --utility-btn-hover: rgba(255, 255, 255, 0.7);
+    
+    --sidebar-bg: rgba(255, 255, 255, 0.85);
+    --sidebar-border: rgba(255, 255, 255, 0.4);
+
+    --shadow-main: 0 20px 40px rgba(31, 41, 55, 0.06);
+    --glass-blur: 20px;
+    --neon-glow: 0 8px 30px rgba(99, 102, 241, 0.08);
+
+    --circle-1-color: rgba(99, 102, 241, 0.15);
+    --circle-2-color: rgba(236, 72, 153, 0.12);
+    --circle-3-color: rgba(45, 212, 191, 0.1);
+}
+
+/* General Layout & Styling Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body {
+    font-family: var(--font-ui);
+    background: var(--bg-gradient);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    transition: background var(--transition-slow);
+}
+
+/* Background Animated Blobs */
+.bg-blur-circles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    mix-blend-mode: screen;
+    animation: drift 25s infinite alternate ease-in-out;
+}
+
+.circle-1 {
+    width: 350px;
+    height: 350px;
+    background: var(--circle-1-color);
+    top: 15%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.circle-2 {
+    width: 450px;
+    height: 450px;
+    background: var(--circle-2-color);
+    bottom: 10%;
+    right: 15%;
+    animation-delay: -5s;
+}
+
+.circle-3 {
+    width: 250px;
+    height: 250px;
+    background: var(--circle-3-color);
+    top: 50%;
+    left: 60%;
+    animation-delay: -10s;
+}
+
+@keyframes drift {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(50px, -50px) scale(1.15);
+    }
+    100% {
+        transform: translate(-30px, 30px) scale(0.9);
+    }
+}
+
+/* App Container Layout */
+.app-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 380px;
+    height: 670px;
+    padding: 10px;
+}
+
+/* Main Calculator Glass Card */
+.calculator-card {
+    width: 100%;
+    height: 100%;
+    background: var(--calc-bg);
+    border: 1px solid var(--calc-border);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border-radius: 28px;
+    box-shadow: var(--shadow-main), var(--neon-glow);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background var(--transition-slow), border var(--transition-slow), box-shadow var(--transition-slow);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Calculator Header & Controls */
+.calc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    color: var(--text-primary);
+    opacity: 0.85;
+}
+
+.logo-icon {
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.controls-group {
+    display: flex;
+    gap: 8px;
+}
+
+.utility-btn {
+    background: var(--utility-btn-bg);
+    border: 1px solid var(--calc-border);
+    color: var(--text-secondary);
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    transition: all var(--transition-fast);
+}
+
+.utility-btn:hover {
+    background: var(--utility-btn-hover);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+.utility-btn:active {
+    transform: scale(0.95);
+}
+
+.utility-btn.active-indicator {
+    color: #ec4899;
+    background: rgba(236, 72, 153, 0.1);
+    border-color: rgba(236, 72, 153, 0.2);
+}
+
+/* Display Screens */
+.display-section {
+    background: var(--display-bg);
+    border: 1px solid var(--display-border);
+    border-radius: 20px;
+    padding: 16px 20px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* History Expression Tracker Display */
+.display-expression {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    min-height: 20px;
+    margin-bottom: 6px;
+    width: 100%;
+    text-align: right;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+}
+
+.display-expression::-webkit-scrollbar {
+    height: 2px;
+}
+
+.display-expression::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.05);
+}
+
+/* Main Display Output */
+.display-current-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.display-current {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 2.3rem;
+    color: var(--text-primary);
+    width: 100%;
+    text-align: right;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    padding-right: 4px;
+}
+
+.display-current::-webkit-scrollbar {
+    height: 3px;
+}
+
+.display-current::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.08);
+    border-radius: 4px;
+}
+
+/* Custom Text Cursor */
+.active-cursor {
+    display: none;
+    position: absolute;
+    right: 0;
+    width: 2px;
+    height: 2.1rem;
+    background-color: #ec4899;
+    animation: pulse-cursor 1s infinite;
+}
+
+@keyframes pulse-cursor {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* 24-Button Keypad Matrix Grid */
+.keypad-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+/* Interactive Calculator Button Keys */
+.key-btn {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 1.15rem;
+    border-radius: 16px;
+    height: 52px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    outline: none;
+    transition: background var(--transition-fast), border var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* Button Varieties Colors & Custom Borders */
+.num-btn {
+    background: var(--key-num-bg);
+    border-color: var(--key-num-border);
+    color: var(--key-num-text);
+}
+
+.num-btn:hover {
+    background: var(--key-num-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.action-btn {
+    background: var(--key-action-bg);
+    border-color: var(--key-action-border);
+    color: var(--key-action-text);
+    font-weight: 600;
+}
+
+.action-btn:hover {
+    background: var(--key-action-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+}
+
+.operator-btn {
+    background: var(--key-op-bg);
+    border-color: var(--key-op-border);
+    color: var(--key-op-text);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.operator-btn:hover {
+    background: var(--key-op-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.15);
+}
+
+.func-btn {
+    background: var(--key-func-bg);
+    border-color: var(--key-func-border);
+    color: var(--key-func-text);
+    font-size: 1.05rem;
+}
+
+.func-btn:hover {
+    background: var(--key-func-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(20, 184, 166, 0.12);
+}
+
+/* The Grand Equals Button */
+.equals-btn {
+    background: var(--key-eq-bg);
+    color: var(--key-eq-text);
+    font-size: 1.4rem;
+    font-weight: 600;
+    box-shadow: var(--key-eq-shadow);
+}
+
+.equals-btn:hover {
+    background: var(--key-eq-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(236, 72, 153, 0.5);
+}
+
+/* Active Pressed States & Keyboard Animations */
+.key-btn:active, .key-btn.key-pressed {
+    transform: scale(0.92) !important;
+    box-shadow: none !important;
+}
+
+/* Wave Ripple Ripple Effect (JS Generated) */
+.ripple {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-effect 0.4s ease-out;
+    pointer-events: none;
+}
+
+@keyframes ripple-effect {
+    to {
+        transform: scale(3.5);
+        opacity: 0;
+    }
+}
+
+/* Side Drawer History Drawer */
+.history-sidebar {
+    position: absolute;
+    top: 0;
+    right: -100%; /* Hidden offscreen on initial load */
+    width: 100%;
+    height: 100%;
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border-left: 1px solid var(--sidebar-border);
+    border-radius: 28px;
+    z-index: 100;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    transition: right var(--transition-normal);
+}
+
+.history-sidebar.open {
+    right: 0;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--sidebar-border);
+}
+
+.history-header h3 {
+    font-weight: 600;
+    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+}
+
+.history-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.history-clear-btn, .history-close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all var(--transition-fast);
+}
+
+.history-clear-btn:hover {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.history-close-btn:hover {
+    color: var(--text-primary);
+    background: var(--utility-btn-hover);
+}
+
+/* Scrollable History Calculations List */
+.history-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 4px;
+}
+
+.history-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background: var(--sidebar-border);
+    border-radius: 4px;
+}
+
+.no-history {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 40px;
+}
+
+/* History Card Entry */
+.history-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--sidebar-border);
+    border-radius: 14px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.history-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(139, 92, 246, 0.2);
+    transform: translateY(-2px);
+}
+
+.history-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: linear-gradient(to bottom, #ec4899, #8b5cf6);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.history-item:hover::before {
+    opacity: 1;
+}
+
+.history-item-expression {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    word-break: break-all;
+    text-align: right;
+}
+
+.history-item-result {
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    word-break: break-all;
+    text-align: right;
+}
+
+/* Media Queries for Responsiveness & Extreme Screen Adapts */
+@media (max-width: 400px) {
+    .app-container {
+        height: 100vh;
+        max-width: 100vw;
+        padding: 0;
+    }
+    
+    .calculator-card {
+        border-radius: 0;
+        border: none;
+        padding: 16px;
+    }
+
+    .history-sidebar {
+        border-radius: 0;
+    }
+}
